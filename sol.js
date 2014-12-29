@@ -80,10 +80,11 @@ var SOL = (function(){
             if(version != HEADER_VER_AMF3)
                 return;
             var res = new Map();
-            while(stream.peek(1) != '\0'){
+            while(stream.pos < data.length){
                 var name = stream.readAMF(STRING_TAG);
                 var value = stream.readAMF();
                 res.set(name, value);
+                stream.read(1);
             }
             return fileName, res;
         },
