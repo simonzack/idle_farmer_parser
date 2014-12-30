@@ -10,7 +10,7 @@ var SOL = (function(){
     var STRING_TAG = '\x06';
 
     function InputStream(data){
-        this.data = data;
+        this.data = data || '';
         this.pos = 0;
     }
 
@@ -64,6 +64,35 @@ var SOL = (function(){
         }
     };
 
+    function OutputStream(data){
+        this.data = data || '';
+        this.pos = 0;
+    }
+
+    OutputStream.prototype = {
+        write: function(data){
+            this.data += data;
+            this.pos = this.data.length;
+        },
+
+        writeShort: function(n){
+            this.data += String.fromCharCode(n >> 8) + String.fromCharCode(n & 0xFF);
+            this.pos = this.data.length;
+        },
+
+        writeLong: function(n){
+            this.data +=
+                String.fromCharCode(n >> 24) + String.fromCharCode((n >> 16) & 0xFF) +
+                String.fromCharCode((n >> 8) & 0xFF) + String.fromCharCode(n & 0xFF);
+            this.pos = this.data.length;
+        },
+
+        writeAMF: function(data){
+            this.data += AMF.stringify(data);
+            this.pos = this.data.length;
+        }
+    };
+
     return {
         parse: function(data){
             var stream = new InputStream(data);
@@ -90,7 +119,24 @@ var SOL = (function(){
         },
 
         stringify: function(fileName, data){
-
+            // write contents first
+            var contentStream = new OutputStream();
+            contentStream.write(HEADER_SIG);
+            contentStream.writeShort(fileName.length);
+            contentStream.write(fileName);
+            contentStream.writeLong(HEADER_VER_AMF3);
+            for(var key in data){
+                if(data.hasOwnProperty(key)){
+                    contentStream.write(AMF.stringify(key).substr(1));
+                    contentStream.writeAMF(data[key]);
+                    contentStream.write('\0');
+                }
+            }
+            var stream = new OutputStream();
+            stream.write(HEADER_VERSION);
+            stream.writeShort(contentStream.data.length);
+            stream.write(contentStream.data);
+            return stream.data;
         }
     };
 })();

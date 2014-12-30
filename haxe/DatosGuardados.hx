@@ -1,7 +1,7 @@
 
 @:expose class DatosGuardados {
 
-   public function DatosGuardados() {
+   public function new() {
       portal = "";
       userId = 0;
       userName = "";
