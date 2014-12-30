@@ -26,9 +26,9 @@ class DataSaver {
       var _loc11_:Int = 0;
       var _loc12_:Int = _loc2_.length;
       while(_loc11_ < _loc12_) {
-         _loc11_++;
          _loc13_ = _loc11_;
-         _loc10_ = Std.int(_loc2_.charCodeAt(_loc13_));
+         _loc11_++;
+         _loc10_ = _loc2_.charCodeAt(_loc13_);
          _loc4_ = _loc4_ + ((_loc13_ % 2) == 0?_loc10_ * 8:-_loc10_);
       }
       var _loc14_:String = "" + _loc4_;
@@ -44,9 +44,9 @@ class DataSaver {
       do {
          _loc13_ = 0;
          while(_loc13_ < _loc7_) {
-            _loc13_++;
             _loc15_ = _loc13_;
-            _loc10_ = Std.int(_loc2_.charCodeAt(_loc12_ - _loc15_ - 1));
+            _loc13_++;
+            _loc10_ = _loc2_.charCodeAt(_loc12_ - _loc15_ - 1);
             _loc8_.add(String.fromCharCode(_loc10_ + _loc9_));
          }
          _loc11_ = _loc11_ + _loc7_;
@@ -58,9 +58,9 @@ class DataSaver {
          _loc13_ = 1;
          _loc15_ = _loc2_.length + 1 - _loc11_;
          while(_loc13_ < _loc15_) {
-            _loc13_++;
             _loc16_ = _loc13_;
-            _loc10_ = Std.int(_loc2_.charCodeAt(_loc2_.length - _loc16_));
+            _loc13_++;
+            _loc10_ = _loc2_.charCodeAt(_loc2_.length - _loc16_);
             _loc8_.add(String.fromCharCode(_loc10_ + _loc9_));
          }
       }
@@ -99,9 +99,9 @@ class DataSaver {
          do {
             _loc14_ = 0;
             while(_loc14_ < _loc6_) {
-               _loc14_++;
                _loc15_ = _loc14_;
-               _loc11_ = Std.int(param1.charCodeAt(_loc13_ - _loc15_ - 1));
+               _loc14_++;
+               _loc11_ = param1.charCodeAt(_loc13_ - _loc15_ - 1);
                _loc2_.add(String.fromCharCode(_loc11_ - _loc10_));
             }
             _loc12_ = _loc12_ + _loc6_;
@@ -113,9 +113,9 @@ class DataSaver {
             _loc14_ = 1;
             _loc15_ = param1.length + 1 - _loc12_;
             while(_loc14_ < _loc15_) {
-               _loc14_++;
                _loc16_ = _loc14_;
-               _loc11_ = Std.int(param1.charCodeAt(param1.length - _loc16_));
+               _loc14_++;
+               _loc11_ = param1.charCodeAt(param1.length - _loc16_);
                _loc2_.add(String.fromCharCode(_loc11_ - _loc10_));
             }
          }
