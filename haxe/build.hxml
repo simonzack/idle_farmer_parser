@@ -1,2 +1,3 @@
 DataSaver.hx
--js dist/DataSaver.js
+DatosGuardados.hx
+-js dist/game.js

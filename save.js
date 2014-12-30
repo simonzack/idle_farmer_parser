@@ -13,7 +13,7 @@
         reader.onload = function() {
             var curFileName, res = SOL.parse(reader.result);
             fileName = curFileName;
-            display.value = DataSaver.load(res.get('datos'));
+            display.value = JSON.stringify(DataSaver.load(res.get('datos')), null, '    ');
         };
     });
 })();

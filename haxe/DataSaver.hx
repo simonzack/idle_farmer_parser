@@ -2,7 +2,7 @@
 import haxe.Serializer;
 import haxe.Unserializer;
 
-class DataSaver {
+@:expose class DataSaver {
 
    public function DataSaver() {
    }
